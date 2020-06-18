@@ -15,9 +15,12 @@ echo
 
 readarray domains < allowed.hosts
 for i in ${domains[@]}; do
-        IP=`dig +short $i`
-        echo "$i = $IP"
-        echo "$IP" >> ip.tmp
+        IPv4=`dig $i A +short`
+        echo "$i = $IPv4"
+        echo "$IPv4" >> ip.tmp
+         IPv6=`dig $i AAAA +short`
+        echo "$i = $IPv6"
+        echo "$IPv6" >> ip.tmp
 done
 
 echo
