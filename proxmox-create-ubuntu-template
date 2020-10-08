@@ -12,7 +12,7 @@ qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0
 echo "Importing Disk.."
 qm importdisk $VM bionic-server-cloudimg-amd64.qcow2 $DS
 echo "Adding Disk to VM..."
-qm set $VM --scsihw virtio-scsi-pci --scsi0 $DS:vm-$VM-disk-0.raw
+qm set $VM --scsihw virtio-scsi-pci --scsi0 $DS:$VM/vm-$VM-disk-0.raw
 echo "Adding Cloud-Init CDROM drive, etc..."
 qm set $VM --ide2 $DS:cloudinit
 qm set $VM --boot c --bootdisk scsi0
