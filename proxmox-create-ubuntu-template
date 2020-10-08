@@ -1,6 +1,6 @@
 echo "VM ID?" read VM
 echo "URL?" read URL
-echo "Distro? read DISTRO
+#echo "Distro? read DISTRO
 #VM=9000
 DS=local
 URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
