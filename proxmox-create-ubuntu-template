@@ -17,7 +17,6 @@ qm resize $VM scsi0 +10G
 echo "Adding Cloud-Init CDROM drive, etc..."
 qm set $VM --ide2 $DS:cloudinit
 qm set $VM --boot c --bootdisk scsi0
-qm set 9000 --serial0 socket --vga serial0
 qm set $VM --serial0 socket --vga serial0
 echo "Creating Template..."
 qm template 9000
