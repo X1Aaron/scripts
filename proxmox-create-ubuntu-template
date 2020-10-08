@@ -1,7 +1,6 @@
 echo "VM ID?" read VM
 echo "URL?" read URL
 #echo "Distro? read DISTRO
-#VM=9000
 DS=local
 URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
 #FEDORA_URL=https://download.fedoraproject.org/pub/fedora/linux/releases/32/Cloud/x86_64/images/Fedora-Cloud-Base-32-1.6.x86_64.qcow2
@@ -24,4 +23,3 @@ qm set $VM --boot c --bootdisk scsi0
 qm set $VM --serial0 socket --vga serial0
 echo "Creating Template..."
 qm template 9000
-
