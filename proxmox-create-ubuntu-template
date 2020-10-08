@@ -3,6 +3,8 @@ VM=9000
 DS=local
 URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
 
+echo "Removing Old Template..."
+qm destroy $VM
 echo "Downloading Image..."
 wget -4 $URL
 echo "Renaming Image.."
