@@ -1,7 +1,10 @@
-
-VM=9000
+echo "VM ID?"
+read VM
+echo "URL?"
+read URL
+#VM=9000
 DS=local
-URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
+#URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
 
 echo "Removing Old Template..."
 qm destroy $VM
