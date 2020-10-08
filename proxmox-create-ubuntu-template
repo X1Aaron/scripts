@@ -6,13 +6,11 @@ URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.
 echo "Removing Old Template..."
 qm destroy $VM
 echo "Downloading Image..."
-wget -4 $URL
-echo "Renaming Image (If Needed)..."
-rename 's/.img/.qcow2/' *.img
+wget -4 -O image.qcow2 $URL
 echo "Creating VM"
 qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0
 echo "Importing Disk.."
-qm importdisk $VM bionic-server-cloudimg-amd64.qcow2 $DS
+qm importdisk $VM image.qcow2 $DS
 echo "Adding Disk to VM..."
 qm set $VM --scsihw virtio-scsi-pci --scsi0 $DS:$VM/vm-$VM-disk-0.raw
 echo "Resizing Disk"
