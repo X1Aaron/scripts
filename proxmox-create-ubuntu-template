@@ -1,9 +1,18 @@
 echo "VM ID?" read VM
 echo "URL?" read URL
-#echo "Distro? read DISTRO
+echo "Distro? read DISTRO
+echo "Version? read VERSION
 DS=local
-URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
-#FEDORA_URL=https://download.fedoraproject.org/pub/fedora/linux/releases/32/Cloud/x86_64/images/Fedora-Cloud-Base-32-1.6.x86_64.qcow2
+UBUNTU_18.04_URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
+FEDORA_32_URL=https://download.fedoraproject.org/pub/fedora/linux/releases/32/Cloud/x86_64/images/Fedora-Cloud-Base-32-1.6.x86_64.qcow2
+
+if [ ! -d "./$DISTRO/$VERSION/" ]; then
+mkdir ./$DISTRO/$VERSION/
+wget -4 -O ./$DISTRO/$VERSION/$DISTRO_$VERSION.qcow2 $DISTRO_$VERSION_URL
+else
+qm importdisk $VM ./$DISTRO/$VERSION/$DISTRO_$VERSION.qcow2 $DS
+fi
+
 
 echo "Removing Old Template..."
 qm destroy $VM
