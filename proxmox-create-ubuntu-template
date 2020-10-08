@@ -1,11 +1,13 @@
 
 VM=9000
 DS=local
+URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
 
-wget https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
+wget -4 $URL
 mv bionic-server-cloudimg-amd64.img bionic-server-cloudimg-amd64.qcow2
 qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0
 qm importdisk $VM bionic-server-cloudimg-amd64.qcow2 $DS
+rm 
 qm set $VM --scsihw virtio-scsi-pci --scsi0 $DS:vm-$VM-disk-0.raw
 qm set $VM --ide2 $DS:cloudinit
 qm set $VM --boot c --bootdisk scsi0
