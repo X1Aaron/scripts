@@ -1,19 +1,7 @@
-echo "VM ID?" read VM
-echo "URL?" read URL
-echo "Distro? read DISTRO
-echo "Version? read VERSION
+
+VM=9000
 DS=local
-UBUNTU_18.04_URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
-FEDORA_32_URL=https://download.fedoraproject.org/pub/fedora/linux/releases/32/Cloud/x86_64/images/Fedora-Cloud-Base-32-1.6.x86_64.qcow2
-
-if [ ! -d "./$DISTRO/$VERSION/" ]; then
-mkdir ./$DISTRO/$VERSION/
-wget -4 -O ./$DISTRO/$VERSION/$DISTRO_$VERSION.qcow2 $DISTRO_$VERSION_URL
-else
-qm importdisk $VM ./$DISTRO/$VERSION/$DISTRO_$VERSION.qcow2 $DS
-fi
-
-
+URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
 echo "Removing Old Template..."
 qm destroy $VM
 echo "Downloading Image..."
@@ -29,6 +17,7 @@ qm resize $VM scsi0 +10G
 echo "Adding Cloud-Init CDROM drive, etc..."
 qm set $VM --ide2 $DS:cloudinit
 qm set $VM --boot c --bootdisk scsi0
+qm set 9000 --serial0 socket --vga serial0
 qm set $VM --serial0 socket --vga serial0
 echo "Creating Template..."
 qm template 9000
