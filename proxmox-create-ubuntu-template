@@ -3,14 +3,20 @@ VM=9000
 DS=local
 URL=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
 
+echo "Downloading Image..."
 wget -4 $URL
+echo "Renaming Image.."
 mv bionic-server-cloudimg-amd64.img bionic-server-cloudimg-amd64.qcow2
+echo "Creating VM"
 qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0
+echo "Importing Disk.."
 qm importdisk $VM bionic-server-cloudimg-amd64.qcow2 $DS
-rm 
+echo "Adding Disk to VM..."
 qm set $VM --scsihw virtio-scsi-pci --scsi0 $DS:vm-$VM-disk-0.raw
+echo "Adding Cloud-Init CDROM drive, etc..."
 qm set $VM --ide2 $DS:cloudinit
 qm set $VM --boot c --bootdisk scsi0
 qm set 9000 --serial0 socket --vga serial0
+echo "Creating Template..."
 qm template 9000
 
