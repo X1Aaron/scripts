@@ -22,9 +22,10 @@ else
 DISTRO=$3
 fi
 
-URL="${DISTRO}_URL"
+URL=${DISTRO}_URL
 
 DS=local
+
 Ubuntu1804_URL=https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
 
 echo
