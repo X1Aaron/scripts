@@ -28,7 +28,7 @@ Ubuntu1804_URL=https://cloud-images.ubuntu.com/focal/current/focal-server-cloudi
 
 echo
 echo Downloading $DISTRO Image...
-wget -4 -O $DISTRO.qcow2 $DISTRO_URL
+wget -4 -O ${DISTRO}.qcow2 $DISTRO_URL
 echo
 echo "Creating VM"
 qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0 --name=$NAME
