@@ -24,17 +24,15 @@ fi
 
 DS=local
 
-Ubuntu1804_URL=https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
 
-echo
 echo Downloading $DISTRO Image...
-wget -4 -O ${DISTRO}.qcow2 ${DISTRO}_URL
+virt-builder $DISTRO
 echo
 echo "Creating VM"
 qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0 --name=$NAME
 echo
 echo "Importing Disk.."
-qm importdisk $VM image.qcow2 $DS
+qm importdisk $VM ${$DISTRO}.qcow2 $DS
 echo
 echo "Adding Disk to VM..."
 qm set $VM --scsihw virtio-scsi-pci --scsi0 $DS:$VM/vm-$VM-disk-0.raw
