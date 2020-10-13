@@ -11,19 +11,19 @@ then
 echo "Distro?"
 read DISTRO
 else
-DISTRO=$3
+DISTRO=$2
 fi
 
 DS=local
 
 echo Downloading $DISTRO Image...
-virt-builder $DISTRO
+virt-builder $DISTRO --format qcow2
 echo
 echo "Creating VM"
 qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0
 echo
 echo "Importing Disk.."
-qm importdisk $VM ${$DISTRO}.qcow2 $DS
+qm importdisk $VM ${DISTRO}.qcow2 $DS
 echo
 echo "Adding Disk to VM..."
 qm set $VM --scsihw virtio-scsi-pci --scsi0 $DS:$VM/vm-$VM-disk-0.raw
