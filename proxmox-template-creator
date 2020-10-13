@@ -1,5 +1,9 @@
+
+if [[ -z "$1" ]]; then
 echo "VM_ID?"
 read VM
+fi
+
 echo "Name?"
 read NAME
 #VM=9001
