@@ -1,20 +1,34 @@
-
-if [[ -z "$1" ]]; then
+if [[ -z "$1" ]]
+then
 echo "VM_ID?"
 read VM
+else
+VM=$1
 fi
 
-echo "Name?"
+if [[ -z "$2" ]]
+then
+echo "Template Name?"
 read NAME
-#VM=9001
+else
+NAME=$2
+fi
+
+if [[ -z "$3" ]]
+then
+echo "Distro?"
+read DISTRO
+else
+DISTRO=$3
+fi
+
+
 DS=local
-URL=https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
+Ubuntu1804_URL=https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
+
 echo
-echo "Removing Old Template..."
-qm destroy $VM
-echo
-echo "Downloading Image..."
-wget -4 -O image.qcow2 $URL
+echo Downloading $DISTRO Image...
+wget -4 -O $DISTRO.qcow2 $DISTRO_URL
 echo
 echo "Creating VM"
 qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0 --name=$NAME
