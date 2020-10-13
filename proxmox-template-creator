@@ -8,14 +8,6 @@ fi
 
 if [[ -z "$2" ]]
 then
-echo "Template Name?"
-read NAME
-else
-NAME=$2
-fi
-
-if [[ -z "$3" ]]
-then
 echo "Distro?"
 read DISTRO
 else
@@ -24,12 +16,11 @@ fi
 
 DS=local
 
-
 echo Downloading $DISTRO Image...
 virt-builder $DISTRO
 echo
 echo "Creating VM"
-qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0 --name=$NAME
+qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0
 echo
 echo "Importing Disk.."
 qm importdisk $VM ${$DISTRO}.qcow2 $DS
