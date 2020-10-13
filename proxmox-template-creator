@@ -22,15 +22,13 @@ else
 DISTRO=$3
 fi
 
-URL=${DISTRO}_URL
-
 DS=local
 
 Ubuntu1804_URL=https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
 
 echo
 echo Downloading $DISTRO Image...
-wget -4 -O ${DISTRO}.qcow2 $URL
+wget -4 -O ${DISTRO}.qcow2 ${DISTRO}_URL
 echo
 echo "Creating VM"
 qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0 --name=$NAME
