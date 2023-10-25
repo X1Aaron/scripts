@@ -5,13 +5,13 @@
 ###################
 
 ## Public bridge holds physical interface (public IP, output gateway)
-Public_Bridge="vmbr0"
+Public_Bridge="vmbr2"
 
 ## WAN bridge ( holds WAN_Network )
 WAN_Bridge="vmbr1"
 
 ## LAN bridge ( holds Lan Network )
-LAN_Bridge="vmbr2"
+LAN_Bridge="vmbr0"
 
 ## Network between hypervisor and firewall
 WAN_Network="192.168.100.0/24"
