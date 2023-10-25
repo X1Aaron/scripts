@@ -23,7 +23,7 @@ LAN_Network="10.0.1.0/24"
 VPN_Network="10.8.0.0/24"
 
 ## IPV4 public IP of the physical interface 
-Public_IP="x.x.x.x"
+Public_IP="45.61.162.45"
 
 ## Hypervisor IP inside the WAN network
 Hypervisor_Wan_IP="172.16.1.1"
