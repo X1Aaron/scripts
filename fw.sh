@@ -14,7 +14,7 @@ WAN_Bridge="vmbr1"
 LAN_Bridge="vmbr0"
 
 ## Network between hypervisor and firewall
-WAN_Network="192.168.100.0/24"
+WAN_Network="172.16.1.0/30"
 
 ## Network between firewall and VMs
 LAN_Network="10.0.1.0/24"
