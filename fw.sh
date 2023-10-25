@@ -26,13 +26,13 @@ VPN_Network="10.8.0.0/24"
 Public_IP="x.x.x.x"
 
 ## Hypervisor IP inside the WAN network
-Hypervisor_Wan_IP="192.168.100.1"
+Hypervisor_Wan_IP="172.16.1.1"
 
 ## Hypervisor IP inside the LAN network
 Hypervisor_LAN_IP="10.0.1.1"
 
 ## Firewall IP inside the WAN network
-Firewall_WAN_IP="192.168.100.2"
+Firewall_WAN_IP="172.16.1.2"
 
 ## SSH Port
 SSH_Port="22"
