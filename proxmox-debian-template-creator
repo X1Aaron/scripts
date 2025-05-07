@@ -1,0 +1,40 @@
+if [[ -z "$1" ]]
+then
+echo "VM_ID?"
+read VM
+else
+VM=$1
+fi
+
+if [[ -z "$2" ]]
+then
+echo "Distro?"
+read DISTRO
+else
+DISTRO=$2
+fi
+
+DS=local
+
+echo Downloading $DISTRO Image...
+virt-builder $DISTRO --format qcow2
+echo
+echo "Creating VM"
+qm create $VM --memory 2048 --net0 virtio,bridge=vmbr0
+echo
+echo "Importing Disk.."
+qm importdisk $VM ${DISTRO}.qcow2 $DS
+echo
+echo "Adding Disk to VM..."
+qm set $VM --scsihw virtio-scsi-pci --scsi0 $DS:$VM/vm-$VM-disk-0.raw
+echo
+echo "Resizing Disk"
+qm resize $VM scsi0 +10G
+echo
+echo "Adding Cloud-Init CDROM drive, etc..."
+qm set $VM --ide2 $DS:cloudinit
+qm set $VM --boot c --bootdisk scsi0
+qm set $VM --serial0 socket --vga serial0
+echo
+echo "Creating Template..."
+qm template $VM
